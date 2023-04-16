@@ -1,18 +1,33 @@
 import mysql.connector
-from random import randint
+from account_access import *
+
+in_account = False
 name = ""
 pin = 0
+balance = 0
+while True:
+    response = input("Would you like to log in, sign up, or quit(l or s or quit): ")
+    if response == "quit":
+        print("Thank you for using our product.")
+        break
+    elif response == "s":
+        create_account()
+    elif response == "l":
+        name, pin, balance = login()
+        print(f'Name: {name}\nPin Number: {pin}\nBalance: {balance}')
+        while True:
+            next_response = input("Would you like to deposit money, withdrawl money, delete your account, or log out(deposit, withdrawl, delete, leave): ")
+            next_response = next_response.lower
+            if(next_response == 'leave'):
+                print("Successfully logged out.")
+                break
+            elif next_response == 'deposit':
+                print('not done')
+            elif next_response == 'withdrawl':
+                print('not done')
+            elif next_response == 'delete':
+                print('not done')
+            
 
-connection = mysql.connector.connect(user = 'root',database = 'example',password = 'Cjrules1106*')
-cursor = connection.cursor()
-
-response = input("Would you like to log in or sign up(l or s): ")
-if response == "s":
-    name = input("Enter your name: ")
-    pin = randint(1000, 9999)
-    add_account = (f"INSERT INTO accounts(name, pin) VALUES (\"{name}\", {pin})")
-    cursor.execute(add_account)
-    connection.commit()
-elif response == "l":
-    name = input("Enter your name: ")
-    pin = input("Enter your pin: ")
+        
+        
