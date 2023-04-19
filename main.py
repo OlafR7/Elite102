@@ -1,7 +1,8 @@
-import mysql.connector
 from account_access import *
+from account_functions import *
 
 in_account = False
+account_num = 0
 name = ""
 pin = 0
 balance = 0
@@ -13,20 +14,29 @@ while True:
     elif response == "s":
         create_account()
     elif response == "l":
-        name, pin, balance = login()
-        print(f'Name: {name}\nPin Number: {pin}\nBalance: {balance}')
+        account_num, name, pin, balance = login()
+        print(f'Account_num: {account_num}\nName: {name}\nPin Number: {pin}\nBalance: {balance}')
         while True:
-            next_response = input("Would you like to deposit money, withdrawl money, delete your account, or log out(deposit, withdrawl, delete, leave): ")
-            next_response = next_response.lower
+            next_response = input("Would you like to deposit money, withdrawl money, check your balance, delete your account, or log out(deposit, withdrawl, balance, delete, leave): ")
+            next_response = next_response.lower()
             if(next_response == 'leave'):
+                account_num = 0
+                name = ""
+                pin = 0
+                balance = 0
                 print("Successfully logged out.")
                 break
             elif next_response == 'deposit':
-                print('not done')
+                new_bal = deposit(account_num, balance)
+                balance = new_bal
             elif next_response == 'withdrawl':
-                print('not done')
+                new_bal = withdrawl(account_num, balance)
+                balance = new_bal
+            elif next_response == 'balance':
+                print(f"Balance: {balance}")
             elif next_response == 'delete':
-                print('not done')
+                delete(account_num, pin)
+                break
             
 
         
