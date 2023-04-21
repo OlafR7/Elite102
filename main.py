@@ -1,7 +1,6 @@
 from account_access import *
 from account_functions import *
 
-in_account = False
 account_num = 0
 name = ""
 pin = 0
@@ -35,7 +34,11 @@ while True:
             elif next_response == 'balance':
                 print(f"Balance: {balance}")
             elif next_response == 'delete':
-                delete(account_num, pin)
+                delete(account_num)
+                account_num = 0
+                name = ""
+                pin = 0
+                balance = 0
                 break
             
 
