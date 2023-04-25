@@ -1,1 +1,2 @@
 # Elite102
+# This is a banking app. You can either create or log into an account. When creating an account you will put in your name, username, and password(Passwords must be unique). Then, a pin and account number will be generated for you and your balance will start at 0. When logged into an account you can deposit or take money out of an account, check your balance, delete your account, or log out.
