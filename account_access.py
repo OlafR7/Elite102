@@ -10,10 +10,11 @@ def create_account():
     password = input("Enter a password: ")
     pin = randint(1000, 9999)
     add_account = (f"INSERT INTO accounts(name, pin, username, password) VALUES (\"{name}\", {pin}, \"{u_name}\", \"{password}\")")
-
-    cursor.execute(add_account)
-
-    connection.commit()
+    try:
+        cursor.execute(add_account)
+        connection.commit()
+    except:
+        print("Sorry that password has been taken.")
     cursor.close()
     connection.close()
 
@@ -27,6 +28,6 @@ def login():
     cursor.execute(get_account)
     for item in cursor:
         return(item[0], item[1], item[2], item[3])
-            
+          
     cursor.close()
     connection.close()
